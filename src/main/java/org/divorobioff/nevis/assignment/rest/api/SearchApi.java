@@ -1,4 +1,4 @@
-package org.divorobioff.nevis.assignment.rest;
+package org.divorobioff.nevis.assignment.rest.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
