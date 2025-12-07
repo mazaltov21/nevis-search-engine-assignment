@@ -1,0 +1,97 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 001-create-clients-table
+      author: divorobioff
+      changes:
+        - createTable:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: country_of_residence
+                  type: varchar(255)
+
+  - changeSet:
+      id: 002-create-documents-table
+      author: divorobioff
+      changes:
+        - createTable:
+            tableName: documents
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 003-add-documents-client-fk
+      author: divorobioff
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: documents
+            baseColumnNames: client_id
+            referencedTableName: clients
+            referencedColumnNames: id
+            constraintName: fk_documents_client
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 004-add-indexes
+      author: divorobioff
+      changes:
+        - createIndex:
+            tableName: documents
+            indexName: idx_documents_client_id
+            columns:
+              - column:
+                  name: client_id
+        - createIndex:
+            tableName: clients
+            indexName: idx_clients_email
+            columns:
+              - column:
+                  name: email

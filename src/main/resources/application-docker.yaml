@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://database:5432/nevis
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
