@@ -2,6 +2,7 @@ package org.divorobioff.nevis.assignment.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Locale;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +24,24 @@ public class ClientEntity {
 
     @Column(name = "country_of_residence")
     private String countryOfResidence;
+
+    @Column(name = "email_domain", nullable = false)
+    private String emailDomain;
+
+    @PrePersist
+    @PreUpdate
+    private void computeEmailDomain() {
+        if (email == null) {
+            emailDomain = null;
+            return;
+        }
+        int atIndex = email.indexOf('@');
+        if (atIndex < 0 || atIndex == email.length() - 1) {
+            emailDomain = null;
+        } else {
+            emailDomain = email.substring(atIndex + 1).toLowerCase(Locale.ROOT);
+        }
+    }
 
     public ClientEntity() {}
 
@@ -69,13 +88,19 @@ public class ClientEntity {
         this.countryOfResidence = countryOfResidence;
     }
 
+    public String getEmailDomain() {
+        return emailDomain;
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientEntity that)) return false;
+        return id != null && id.equals(that.id);
     }
 }

@@ -1,3 +1,7 @@
 databaseChangeLog:
   - include:
       file: db/changelog/001-init-schema.yaml
+  - include:
+      file: db/changelog/002-drop-email-index.yaml
+  - include:
+      file: db/changelog/003-client-email-domain-search.yaml

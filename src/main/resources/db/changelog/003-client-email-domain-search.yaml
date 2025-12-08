@@ -1,0 +1,50 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 006-client-email-domain-column
+      author: divorobioff
+      changes:
+        # Add email_domain column
+        - addColumn:
+            tableName: clients
+            columns:
+              - column:
+                  name: email_domain
+                  type: text
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 007-client-email-domain-populate
+      author: divorobioff
+      changes:
+        - sql:
+            sql: |
+              UPDATE clients
+              SET email_domain = lower(substring(email FROM '@(.+)$'))
+              WHERE email_domain IS NULL;
+  - changeSet:
+      id: 008-client-email-domain-not-null
+      author: divorobioff
+      changes:
+        - sql:
+            sql: ALTER TABLE clients ALTER COLUMN email_domain SET NOT NULL;
+  - changeSet:
+      id: 009-enable-pg-trgm
+      author: divorobioff
+      changes:
+        - sql:
+            sql: CREATE EXTENSION IF NOT EXISTS pg_trgm;
+  - changeSet:
+      id: 010-client-email-domain-indexes
+      author: divorobioff
+      changes:
+        - sql:
+            sql: |
+              -- Trigram GIN index for similarity / prefix search
+              CREATE INDEX IF NOT EXISTS idx_clients_email_domain_trgm
+              ON clients
+              USING gin (email_domain gin_trgm_ops);
+
+              -- Regular btree index for exact domain lookups
+              CREATE INDEX IF NOT EXISTS idx_clients_email_domain
+              ON clients (email_domain);

@@ -1,0 +1,8 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 005-drop-clients-email-index
+      author: divorobioff
+      changes:
+        - sql:
+            sql: DROP INDEX IF EXISTS idx_clients_email;
