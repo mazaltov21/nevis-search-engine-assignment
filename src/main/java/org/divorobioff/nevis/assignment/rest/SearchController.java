@@ -2,7 +2,7 @@ package org.divorobioff.nevis.assignment.rest;
 
 import org.divorobioff.nevis.assignment.dto.response.SearchResult;
 import org.divorobioff.nevis.assignment.rest.api.SearchApi;
-import org.divorobioff.nevis.assignment.service.api.SearchServiceApi;
+import org.divorobioff.nevis.assignment.service.SearchServiceApi;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

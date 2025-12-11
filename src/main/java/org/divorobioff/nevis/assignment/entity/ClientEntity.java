@@ -1,5 +1,6 @@
 package org.divorobioff.nevis.assignment.entity;
 
+import com.google.common.annotations.VisibleForTesting;
 import jakarta.persistence.*;
 
 import java.util.Locale;
@@ -54,6 +55,11 @@ public class ClientEntity {
 
     public UUID getId() {
         return id;
+    }
+
+    @VisibleForTesting
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getFirstName() {

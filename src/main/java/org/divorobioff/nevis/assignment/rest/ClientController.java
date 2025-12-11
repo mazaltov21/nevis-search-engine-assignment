@@ -6,8 +6,8 @@ import org.divorobioff.nevis.assignment.dto.response.ClientResponseDto;
 import org.divorobioff.nevis.assignment.dto.response.DocumentResponseDto;
 import org.divorobioff.nevis.assignment.rest.api.ClientsApi;
 import org.divorobioff.nevis.assignment.rest.error.exception.InvalidIdentifierException;
-import org.divorobioff.nevis.assignment.service.api.ClientServiceApi;
-import org.divorobioff.nevis.assignment.service.api.DocumentServiceApi;
+import org.divorobioff.nevis.assignment.service.client.api.ClientServiceApi;
+import org.divorobioff.nevis.assignment.service.document.api.DocumentServiceApi;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;

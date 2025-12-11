@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:tc:pgvector:pg16:///nevis
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    username: test
+    password: test
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    enabled: true
+
+  ai:
+    openai:
+      base-url: http://localhost:8089
+      api-key: dummy-key
+    vectorstore:
+      pgvector:
+        initialize-schema: false
+
+search:
+  config:
+    default-limit: 5
+    min-similarity: 0.8

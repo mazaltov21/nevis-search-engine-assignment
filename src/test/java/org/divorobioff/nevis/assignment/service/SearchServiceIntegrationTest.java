@@ -3,15 +3,14 @@ package org.divorobioff.nevis.assignment.service;
 import org.divorobioff.nevis.assignment.dto.response.SearchResult;
 import org.divorobioff.nevis.assignment.entity.ClientEntity;
 import org.divorobioff.nevis.assignment.entity.repo.ClientRepository;
-import org.divorobioff.nevis.assignment.service.api.SearchServiceApi;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;
@@ -19,19 +18,17 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @SpringBootTest
+@ActiveProfiles("test")
 @Testcontainers
 public class SearchServiceIntegrationTest {
-
-    @Container
-    @ServiceConnection
-    static PostgreSQLContainer<?> postgres =
-            new PostgreSQLContainer<>("postgres:16-alpine");
 
     @Autowired
     private ClientRepository clientRepository;
 
     @Autowired
     private SearchServiceApi searchService;
+    @MockitoBean
+    private VectorStore vectorStore;
 
     @AfterEach
     void cleanUp() {

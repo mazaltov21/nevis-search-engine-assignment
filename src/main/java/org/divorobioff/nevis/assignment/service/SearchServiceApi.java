@@ -1,4 +1,4 @@
-package org.divorobioff.nevis.assignment.service.api;
+package org.divorobioff.nevis.assignment.service;
 
 import org.divorobioff.nevis.assignment.dto.response.SearchResult;
 

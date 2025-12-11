@@ -1,4 +1,4 @@
-package org.divorobioff.nevis.assignment.service.api;
+package org.divorobioff.nevis.assignment.service.client.api;
 
 import org.divorobioff.nevis.assignment.dto.request.ClientRequestDto;
 import org.divorobioff.nevis.assignment.dto.response.ClientResponseDto;

@@ -1,4 +1,4 @@
-package org.divorobioff.nevis.assignment.service;
+package org.divorobioff.nevis.assignment.service.client;
 
 import org.divorobioff.nevis.assignment.dto.request.ClientRequestDto;
 import org.divorobioff.nevis.assignment.dto.response.ClientResponseDto;
@@ -7,7 +7,7 @@ import org.divorobioff.nevis.assignment.entity.repo.ClientRepository;
 import org.divorobioff.nevis.assignment.mapper.ClientMapper;
 import org.divorobioff.nevis.assignment.rest.error.exception.ClientEmailAlreadyExistsException;
 import org.divorobioff.nevis.assignment.rest.error.exception.ClientNotFoundException;
-import org.divorobioff.nevis.assignment.service.api.ClientServiceApi;
+import org.divorobioff.nevis.assignment.service.client.api.ClientServiceApi;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

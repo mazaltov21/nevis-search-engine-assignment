@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   database:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     container_name: database
     environment:
       POSTGRES_DB: nevis
@@ -19,6 +19,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     ports:
       - "8080:8080"
     depends_on:

@@ -1,4 +1,4 @@
-package org.divorobioff.nevis.assignment.service.api;
+package org.divorobioff.nevis.assignment.service.document.api;
 
 import org.divorobioff.nevis.assignment.dto.request.DocumentRequestDto;
 import org.divorobioff.nevis.assignment.dto.response.DocumentResponseDto;
