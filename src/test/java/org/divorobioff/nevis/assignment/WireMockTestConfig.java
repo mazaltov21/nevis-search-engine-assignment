@@ -15,13 +15,13 @@ public class WireMockTestConfig {
 
     @Bean(initMethod = "start", destroyMethod = "stop")
     public WireMockServer wireMockServer() {
-        WireMockServer server = new WireMockServer(WireMockConfiguration.options().port(8089));
+        WireMockServer server = new WireMockServer(WireMockConfiguration.options().port(8089).http2PlainDisabled(true));
 
         server.stubFor(post("/v1/embeddings")
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{ \"object\": \"list\", \"data\": [ {\"object\": \"embedding\", \"embedding\": [0.1, 0.2, 0.3], \"index\": 0 } ], \"model\": \"text-embedding-ada-002\", \"usage\": { \"prompt_tokens\": 8, \"total_tokens\": 8 } }")));  // Mock vector
+                        .withBody("{ \"object\": \"list\", \"data\": [ {\"object\": \"embedding\", \"embedding\": [0.1, 0.2, 0.3], \"index\": 0 } ], \"model\": \"text-embedding-ada-002\", \"usage\": { \"prompt_tokens\": 8, \"total_tokens\": 8 } }")));
 
         server.stubFor(post("/v1/chat/completions")
                 .willReturn(aResponse()

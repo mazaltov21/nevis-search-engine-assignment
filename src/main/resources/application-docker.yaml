@@ -22,4 +22,4 @@ spring:
 search:
   config:
     default-limit: 5
-    min-similarity: 0.7
+    min-similarity: 0.75

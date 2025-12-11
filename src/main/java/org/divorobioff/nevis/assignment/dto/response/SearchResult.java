@@ -1,11 +1,18 @@
 package org.divorobioff.nevis.assignment.dto.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.time.LocalDateTime;
 
+@Schema(
+        description = "Search result (either client or document)",
+        oneOf = { SearchResult.ClientResult.class, SearchResult.DocumentResult.class }
+)
 public sealed interface SearchResult permits SearchResult.ClientResult, SearchResult.DocumentResult {
 
     SearchResultType type();
 
+    @Schema(name = "ClientSearchResult", description = "Client search result")
     record ClientResult(
             SearchResultType type,
             String id,
@@ -19,6 +26,7 @@ public sealed interface SearchResult permits SearchResult.ClientResult, SearchRe
         }
     }
 
+    @Schema(name = "DocumentSearchResult", description = "Document search result")
     record DocumentResult(
             SearchResultType type,
             String id,

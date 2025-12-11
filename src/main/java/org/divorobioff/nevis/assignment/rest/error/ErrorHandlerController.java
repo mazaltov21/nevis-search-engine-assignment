@@ -5,6 +5,7 @@ import jakarta.validation.ConstraintViolationException;
 import org.divorobioff.nevis.assignment.dto.response.error.ApiErrorResponse;
 import org.divorobioff.nevis.assignment.rest.error.exception.ClientEmailAlreadyExistsException;
 import org.divorobioff.nevis.assignment.rest.error.exception.ClientNotFoundException;
+import org.divorobioff.nevis.assignment.rest.error.exception.DocumentMissingException;
 import org.divorobioff.nevis.assignment.rest.error.exception.InvalidIdentifierException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -55,6 +56,11 @@ public class ErrorHandlerController {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ApiErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex, HttpServletRequest request) {
         return buildErrorResponse(HttpStatus.CONFLICT, "Data integrity violation", request.getRequestURI());
+    }
+
+    @ExceptionHandler(DocumentMissingException.class)
+    public ResponseEntity<ApiErrorResponse> handleDocumentMissing(DocumentMissingException ex, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI());
     }
 
     @ExceptionHandler(Exception.class)
